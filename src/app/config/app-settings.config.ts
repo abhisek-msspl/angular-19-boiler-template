@@ -1,7 +1,7 @@
 export const appSettings = {
   appTitle: 'Angular Project',
-  credentialsKey: 'angular_project_user',
-  rememberKey: 'angular_project_remember',
+  credentialsKey: 'app_user',
+  rememberKey: 'app_remember',
   rowsPerPage: 10,
   ajaxTimeout: 300000,
   mobilePattern: /^[\d()+-]+$/,
