@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+const plugin = require('tailwindcss/plugin');
 module.exports = {
   content: ['./src/**/*.{html,ts,css,scss,sass}'],
   darkMode: 'class',
@@ -14,12 +15,16 @@ module.exports = {
       current: 'currentColor',
       white: '#ffffff',
       primary: {
-        DEFAULT: '#B7A389',
-        100: '#947f63',
+        DEFAULT: '#124352',
+        100: '#',
       },
       secondary: {
-        DEFAULT: '#186C80',
+        DEFAULT: '#ff7f7e',
         100: '#8D9093',
+      },
+      tertiary: {
+        DEFAULT: '#9cb0b6',
+        100: '#',
       },
       black: {
         DEFAULT: '#000000',
@@ -27,35 +32,35 @@ module.exports = {
       },
       gray: {
         DEFAULT: '#F4F4F4',
-        100: '#E9E9E9',
+        100: '#',
       },
       blue: {
         DEFAULT: '',
-        100: '#68b7dd',
+        100: '#',
       },
       green: {
-        DEFAULT: '#1CBE2A',
-        100: '#A1ECA8',
+        DEFAULT: '#',
+        100: '#',
       },
       orange: {
-        DEFAULT: '#E9D779',
-        100: '#FFE0B6',
+        DEFAULT: '#',
+        100: '#',
       },
       yellow: {
-        DEFAULT: '#C78F00',
-        100: '#9D8A72',
+        DEFAULT: '#',
+        100: '#',
       },
       red: {
-        DEFAULT: '#FF3300',
-        100: '#FFCECE',
+        DEFAULT: '#',
+        100: '#',
       },
       other: {
-        DEFAULT: '#F2FCFF',
-        100: '#F9F6F3',
+        DEFAULT: '#',
+        100: '#',
       },
       error: {
-        DEFAULT: '#FF3300',
-        100: '#FF0505',
+        DEFAULT: '#',
+        100: '#',
       },
       disabled: {
         DEFAULT: '#d2d5d9',
@@ -196,16 +201,6 @@ module.exports = {
         sm: '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
         DEFAULT: '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)',
         authFormShadow: '0px 0px 1px 0px rgba(39, 39, 39, 0.25)',
-        tabHeaderShadow: '0px 2px 4px 0px rgba(0, 0, 0, 0.07)',
-        outerBotShadw: '0px 5px 5px 0px rgba(0, 0, 0, 0.05)',
-        sidebarFooterButtonShadow: '0px 0px 20px 0px rgba(39, 39, 39, 0.10)',
-        accordianShadow: '0px 2px 4px 0px rgba(0, 0, 0, 0.05)',
-        iconblockShadow: '1px 1px 5px 0px rgba(0, 0, 0, 0.10)',
-        uploadblockShadow: '2px 2px 4px rgba(0, 0, 0, 0.25)',
-        deatilsNotificationShadow: '0px 0px 10px 0px rgba(0, 0, 0, 0.10)',
-        accesscontrolHeaderShadow: '0px 3px 7px 0px rgba(0, 0, 0, 0.10)',
-        leftPartShadow: '5px 4px 10px 0px rgba(0, 0, 0, 0.10)',
-        rightPartShadow: '-5px 4px 10px 0px rgba(0, 0, 0, 0.07)',
       },
       content: {
         none: 'none',
@@ -499,5 +494,18 @@ module.exports = {
       // => @media (min-width: 1536px) { ... }
     },
   },
-  plugins: [],
+  plugins: [
+    plugin(function ({ addUtilities, addComponents, e, config }) {
+      // Add your custom styles here
+      addUtilities({
+        html: {
+          'font-size': '62.5%',
+          // "scroll-behavior": "smooth",
+        },
+        '.empty-content': {
+          content: "''",
+        },
+      });
+    }),
+  ],
 };

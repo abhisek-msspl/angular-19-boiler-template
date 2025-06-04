@@ -1,4 +1,112 @@
+@use 'utilities';
+@use 'mixins' as *;
+@use 'variables' as *;
+
 /* You can add global styles to this file, and also import other style files */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.no-spacing {
+  @apply m-0;
+  @apply p-0;
+}
+.font-basic {
+  @apply text-base;
+  @apply leading-none;
+  @apply font-primary;
+  @apply font-normal;
+  @apply text-primary;
+}
+* {
+  @extend .no-spacing;
+  @apply font-primary;
+}
+html {
+  @apply overflow-x-hidden;
+  &::-webkit-scrollbar {
+    @apply w-1;
+  }
+  &::-webkit-scrollbar-track {
+    @apply bg-[#d1d0d0];
+  }
+  &::-webkit-scrollbar-thumb {
+    @apply bg-primary;
+    @apply rounded-xl;
+  }
+}
+
+body {
+  @extend .font-basic;
+  @apply antialiased;
+  @apply overflow-x-hidden;
+  @apply box-border;
+  @apply tracking-normal #{!important};
+}
+body.not-scrollable {
+  @apply overflow-hidden #{!important};
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @extend .font-basic;
+  @extend .no-spacing;
+  @apply tracking-normal #{!important};
+}
+p {
+  @extend .font-basic;
+  @extend .no-spacing;
+}
+ol,
+ul {
+  @apply list-none;
+  @extend .no-spacing;
+}
+a,
+a:hover {
+  @apply no-underline;
+  @apply font-primary;
+}
+button {
+  @apply outline-none;
+  @apply font-primary;
+  //   @include property('background-color', none);
+}
+input {
+  @apply filter-none #{!important};
+  @apply font-primary;
+}
+//mat-typography
+.mat-typography p,
+.mat-typography h1,
+.mat-typography h2,
+.mat-typography h3,
+.mat-typography h4,
+.mat-typography h5,
+.mat-typography h6 {
+  @extend .no-spacing;
+  @apply font-primary;
+  @apply leading-none;
+  @apply font-normal;
+}
+input:focus {
+  @apply outline-none #{!important};
+  @apply shadow-none #{!important};
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  @apply appearance-none;
+}
+
+/* Typography Styles */
+.mat-h4,
+.mat-body-1,
+.mat-typography .mat-h4,
+.mat-typography .mat-body-1,
+.mat-typography h4 {
+  @apply m-0 #{!important};
+}
