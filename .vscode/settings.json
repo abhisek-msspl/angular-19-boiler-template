@@ -4,7 +4,9 @@
   "editor.wordWrap": "on",
   "editor.formatOnSave": true,
   "editor.formatOnPaste": true,
+  "eslint.format.enable": true,
   "editor.formatOnType": false, // required
+  "eslint.validate": ["typescript", "html"],
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "javascript.updateImportsOnFileMove.enabled": "always",
   "typescript.updateImportsOnFileMove.enabled": "always"
