@@ -35,8 +35,8 @@ export class ConfirmationDialogComponent implements OnInit {
   showConfirmButton = true;
   confirmButtonText = 'Save';
   dialogType: 'normal' | 'warning' = 'normal';
-  @Output() confirmDialog: EventEmitter<boolean> = new EventEmitter();
-  @Output() cancelDialog: EventEmitter<boolean> = new EventEmitter();
+  @Output() cancelDialog = new EventEmitter<boolean>();
+  @Output() confirmDialog = new EventEmitter<boolean>();
 
   constructor(
     @Inject(MAT_DIALOG_DATA) private data: IDialogData,

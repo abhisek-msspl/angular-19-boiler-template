@@ -15,7 +15,7 @@ export class EncryptionService {
    * @returns response
    * @developer Abhisek Dhua
    */
-  encryptUsingAES256(request: { [key: string]: any } | any) {
+  encryptUsingAES256(request: Record<string, any> | any) {
     let response = '';
     try {
       response = CryptoJS.AES.encrypt(JSON.stringify(request), this.key, {
@@ -24,6 +24,7 @@ export class EncryptionService {
         padding: CryptoJS.pad.Pkcs7,
       }).toString();
     } catch (error) {
+      console.error(error);
       response = '';
     }
     return response;
@@ -45,6 +46,7 @@ export class EncryptionService {
         padding: CryptoJS.pad.Pkcs7,
       }).toString(CryptoJS.enc.Utf8);
     } catch (error) {
+      console.error(error);
       response = '';
     }
     return JSON.parse(response ? response : JSON.stringify({ error: true }));

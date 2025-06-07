@@ -150,9 +150,9 @@ export function timeGreeting(): string {
   ];
   const hour = new Date().getHours();
 
-  for (let i = 0; i < data.length; i++) {
-    if (hour >= Number(data[i][0]) && hour <= Number(data[i][1])) {
-      const result = data[i][2].toString();
+  for (const element of data) {
+    if (hour >= Number(element[0]) && hour <= Number(element[1])) {
+      const result = element[2].toString();
       greeting = result
         .split(' ')
         .map(s => s.charAt(0).toUpperCase() + s.substring(1))
@@ -181,8 +181,7 @@ export function fileUploadValidation(
 
   if (files.length > 0) {
     // Getting list of files
-    for (let i = 0; i < files.length; i++) {
-      const file = files[i];
+    for (const file of files) {
       const _fileName = file.name; // file name
       const _fileSize = file.size; // file size
       const _fileTypes = fileTypes; // preferred extensions
@@ -243,11 +242,11 @@ export function getBase64(file: File): Promise<string> {
  * @returns file File
  */
 export function dataURLtoFile(data_url: string, file_name: string) {
-  var arr = data_url.split(','),
-    mime = arr[0].match(/:(.*?);/)![1],
-    bstr = atob(arr[1]),
-    n = bstr.length,
-    u8arr = new Uint8Array(n);
+  const arr = data_url.split(',');
+  const mime = arr[0].match(/:(.*?);/)![1];
+  const bstr = atob(arr[1]);
+  let n = bstr.length;
+  const u8arr = new Uint8Array(n);
   while (n--) {
     u8arr[n] = bstr.charCodeAt(n);
   }

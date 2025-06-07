@@ -43,7 +43,7 @@ export class CryptoService {
   /**
    * Encrypts text using AES-256-CBC
    */
-  async encrypt(data: { [key: string]: any } | any): Promise<string> {
+  async encrypt(data: Record<string, any> | any): Promise<string> {
     try {
       if (!data) return '';
 
@@ -58,6 +58,7 @@ export class CryptoService {
 
       return this.uint8ArrayToBase64(new Uint8Array(encryptedData));
     } catch (error) {
+      console.error(error);
       return '';
     }
   }
@@ -81,6 +82,7 @@ export class CryptoService {
 
       return JSON.parse(new TextDecoder().decode(decryptedData));
     } catch (error) {
+      console.error(error);
       return { error: 'Decryption failed' };
     }
   }

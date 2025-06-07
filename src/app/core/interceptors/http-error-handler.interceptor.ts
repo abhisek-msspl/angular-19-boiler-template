@@ -15,7 +15,7 @@ import { throwError, Observable, EMPTY } from 'rxjs';
 import { AuthenticationService } from '@core/authentication';
 import { take, filter, timeout, finalize, switchMap, catchError } from 'rxjs/operators';
 
-export const httpErrorInterceptor: HttpInterceptorFn = (
+export const httpErrorHandlerInterceptorFn: HttpInterceptorFn = (
   req: HttpRequest<unknown>,
   next: HttpHandlerFn
 ): Observable<HttpEvent<unknown>> => {

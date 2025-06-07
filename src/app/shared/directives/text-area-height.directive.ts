@@ -13,7 +13,7 @@ import {
   standalone: true,
 })
 export class TextAreaHeightDirective {
-  @Input() lineCount: number = 2;
+  @Input() lineCount = 2;
   @Output() heightExits = new EventEmitter<boolean>();
 
   constructor(

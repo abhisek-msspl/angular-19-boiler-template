@@ -10,7 +10,7 @@
 // import { environment } from '@env/environment';
 // import { EncryptionService } from '../services/encryption.service';
 
-// export const httpSuccessHandlerInterceptor: HttpInterceptorFn = (
+// export const httpSuccessHandlerInterceptorFn: HttpInterceptorFn = (
 //   req: HttpRequest<unknown>,
 //   next: HttpHandlerFn
 // ): Observable<HttpEvent<unknown>> => {
@@ -20,12 +20,12 @@
 //   if (
 //     encryptedRequest &&
 //     !(req.body instanceof FormData) &&
-//     (req.body as { [key: string]: any })['enc_data'] === undefined
+//     (req.body as Record<string, any>)['enc_data'] === undefined
 //   ) {
 //     // encrypt request before api call depending on environment setup
-//     (req.body as { [key: string]: any }) = {
+//     (req.body as Record<string, any>) = {
 //       enc_data: _encryptionService.encryptUsingAES256(
-//         req.body as { [key: string]: any }
+//         req.body as Record<string, any>
 //       ),
 //     };
 //   }

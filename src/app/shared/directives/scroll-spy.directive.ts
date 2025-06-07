@@ -5,7 +5,7 @@ import { Directive, ElementRef, EventEmitter, HostListener, Input, Output } from
   standalone: true,
 })
 export class ScrollSpyDirective {
-  private currentSection: string = '';
+  private currentSection = '';
   @Input() public spiedTags: string[] = [];
   @Output() public sectionChange = new EventEmitter<string>();
 
@@ -13,12 +13,11 @@ export class ScrollSpyDirective {
 
   @HostListener('scroll', ['$event'])
   onScroll(event: Event) {
-    let currentSection: string = '';
+    let currentSection = '';
     const children = this._el.nativeElement.children;
-    const scrollTop = (<HTMLElement>event.target).scrollTop;
-    const parentOffset = (<HTMLElement>event.target).offsetTop;
-    for (let i = 0; i < children.length; i++) {
-      const element = children[i];
+    const scrollTop = (event.target as HTMLElement).scrollTop;
+    const parentOffset = (event.target as HTMLElement).offsetTop;
+    for (const element of children) {
       if (this.spiedTags.some(spiedTag => spiedTag === element.tagName)) {
         if (element.offsetTop - parentOffset <= scrollTop) {
           currentSection = element.id;

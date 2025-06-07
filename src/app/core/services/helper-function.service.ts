@@ -176,7 +176,7 @@ export class HelperFunctionService implements OnDestroy {
   public fileDownload(file_url: string, file_name?: string) {
     if (file_url) {
       const link = document.createElement('a');
-      file_name && link.setAttribute('download', file_name);
+      if (file_name) link.setAttribute('download', file_name);
       link.href = file_url;
       document.body.appendChild(link);
       link.click();

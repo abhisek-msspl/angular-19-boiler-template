@@ -3,8 +3,8 @@ interface IDeepLinkingDetails {
   route_value: string;
   need_to_login: number;
   route_description?: string;
+  route_details: Record<string, any>;
   route_identification: string | number;
-  route_details: { [key: string]: any };
 }
 
 interface IDropdownOption {

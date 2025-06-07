@@ -12,14 +12,12 @@ import { BehaviorSubject, debounceTime, pairwise, Subscription } from 'rxjs';
   styleUrl: './global-search.component.scss',
 })
 export class GlobalSearchComponent implements OnDestroy {
+  public valueChange = output<string>();
   public searchModel = signal<string>('');
   private skipEmit = signal<boolean>(false);
   private subscriptions: Subscription[] = [];
+  public searchPlaceholder = input<string>('Search');
   public searchModel$ = new BehaviorSubject<string>('');
-  public onChange = output<string>({ alias: 'onChange' });
-  public searchPlaceholder = input<string>('Search', {
-    alias: 'search-placeholder',
-  });
 
   constructor() {
     /* Init debounce search */
@@ -31,7 +29,7 @@ export class GlobalSearchComponent implements OnDestroy {
             return;
           }
           if ((!!previousValue.trim() && !currentValue.trim()) || !!currentValue.trim()) {
-            this.onChange.emit(currentValue.trim());
+            this.valueChange.emit(currentValue.trim());
           }
         },
       })

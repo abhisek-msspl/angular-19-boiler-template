@@ -21,11 +21,11 @@ export const httpSuccessHandlerInterceptorFn: HttpInterceptorFn = (
     encryptedRequest &&
     !(req.body instanceof FormData) &&
     req.url !== './assets/i18n/en.json' &&
-    (req.body as { [key: string]: any })['enc_data'] === undefined
+    (req.body as Record<string, any>)['enc_data'] === undefined
   ) {
-    return from(_cryptoService.encrypt(req.body as { [key: string]: any })).pipe(
+    return from(_cryptoService.encrypt(req.body as Record<string, any>)).pipe(
       mergeMap(encryptedString => {
-        (req.body as { [key: string]: any }) = {
+        (req.body as Record<string, any>) = {
           enc_data: encryptedString,
         };
         return handleRequest(req);

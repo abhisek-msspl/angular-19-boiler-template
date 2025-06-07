@@ -4,7 +4,7 @@ import { Observable, catchError, finalize, throwError } from 'rxjs';
 import { AuthenticationService } from '../authentication/authentication.service';
 import { HttpEvent, HttpRequest, HttpHandlerFn, HttpInterceptorFn } from '@angular/common/http';
 
-export const httpAuthHeaderInterceptor: HttpInterceptorFn = (
+export const httpHeaderHandlerInterceptorFn: HttpInterceptorFn = (
   req: HttpRequest<unknown>,
   next: HttpHandlerFn
 ): Observable<HttpEvent<unknown>> => {

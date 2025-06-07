@@ -4,6 +4,7 @@ import { provideToastr } from 'ngx-toastr';
 import { provideRouter } from '@angular/router';
 import { environment } from '../environments/environment';
 import { withNgxsLoggerPlugin } from '@ngxs/logger-plugin';
+import { provideCustomHttpClient } from './http.providers';
 import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
@@ -13,6 +14,7 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideAnimationsAsync(),
     // manually added providers
+    provideCustomHttpClient(),
     provideToastr({
       timeOut: 3000,
       closeButton: true,

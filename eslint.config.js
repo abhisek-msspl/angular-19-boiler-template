@@ -26,6 +26,7 @@ module.exports = tseslint.config(
     processor: angular.processInlineTemplates,
     rules: {
       // 'prettier/prettier': ['error'],
+      '@typescript-eslint/no-explicit-any': ['warn'],
     },
   },
   {
