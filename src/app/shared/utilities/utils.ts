@@ -34,6 +34,38 @@ export function isObject(arg: any) {
 }
 
 /**
+ * A function call debounce to prevent multiple clicks
+ *
+ * @param func function need to pass in this param
+ * @param delay in millisecond
+ * @returns void // ignore call
+ *
+ * ### How to use it on component
+ *
+ * ```
+ * constructor() {
+ *   this.handleClick = debounce(this.handleClick.bind(this), 500); // Prevents execution if called within 500ms
+ * }
+ *
+ * handleClick() {
+ *  console.log('Button clicked!');
+ * }
+ * ```
+ */
+export function debounce<T extends (...args: any[]) => void>(func: T, delay: number): T {
+  let timer: ReturnType<typeof setTimeout> | null = null;
+  return function (...args: Parameters<T>) {
+    if (timer) return; // Ignore the call if the function is still on cooldown
+
+    timer = setTimeout(() => {
+      timer = null; // Reset timer after delay
+    }, delay);
+
+    func(...args);
+  } as T;
+}
+
+/**
  * *Generating random string
  *
  * @param length : length of the string to return
