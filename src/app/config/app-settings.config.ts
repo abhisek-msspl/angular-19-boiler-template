@@ -17,6 +17,14 @@ export const appSettings = {
     { value: 'equals', label: 'Equals' },
     { value: 'notEquals', label: 'Not Equals' },
   ],
+  numberFilterDropDown: [
+    { value: 'equals', label: 'Equal' },
+    { value: 'notEquals', label: 'Not equal' },
+    { value: 'lt', label: 'Less' },
+    { value: 'lte', label: 'Less or equal' },
+    { value: 'gt', label: 'Greater' },
+    { value: 'gte', label: 'Greater or equal' },
+  ],
   dateFilterDropdown: [
     { value: 'dateIs', label: 'Date is' },
     { value: 'dateIsNot', label: 'Date is not' },

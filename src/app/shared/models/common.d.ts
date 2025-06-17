@@ -13,22 +13,6 @@ interface IDropdownOption {
   label?: number | string;
 }
 
-interface IMatTableFilter {
-  globalFilterColumns: string[];
-  filterObject: IMatTableFilterObject;
-}
-
-interface IMatTableFilterObject extends Record<string, IFilter> {
-  globalFilter: IFilter;
-}
-
-interface IFilter {
-  filter: {
-    value: number | string;
-    matchMode?: IStringMatchMode | IDateMatchMode;
-  };
-}
-
 type IStringMatchMode =
   | 'startsWith'
   | 'endsWith'
@@ -36,6 +20,8 @@ type IStringMatchMode =
   | 'notContains'
   | 'equals'
   | 'notEquals';
+
+type INumberMatchMode = 'equals' | 'notEquals' | 'lt' | 'lte' | 'gt' | 'gte';
 
 type IDateMatchMode = 'dateIs' | 'dateIsNot' | 'dateIsBefore' | 'dateIsAfter';
 

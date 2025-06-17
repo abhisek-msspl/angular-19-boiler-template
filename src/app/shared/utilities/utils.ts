@@ -14,6 +14,22 @@ interface IValidationError {
   _isSizeExceeds: boolean;
 }
 
+interface IMatTableFilter {
+  globalFilterColumns: string[];
+  filterObject: IMatTableFilterObject;
+}
+
+interface IMatTableFilterObject extends Record<string, IFilter> {
+  globalFilter: IFilter;
+}
+
+interface IFilter {
+  filter: {
+    value: number | string;
+    matchMode?: IStringMatchMode | IDateMatchMode;
+  };
+}
+
 /**
  * *Checking if a string or number is a valid number
  * @param n
@@ -151,7 +167,7 @@ export function toAbbreviateNumber(value: number) {
     const suffixNum = Math.floor(('' + value).length / 3);
     for (let precision = 2; precision >= 1; precision--) {
       shortValue = parseFloat(
-        (suffixNum !== 0 ? value / Math.pow(1000, suffixNum) : value).toPrecision(precision)
+        (suffixNum !== 0 ? value / Math.pow(1000, suffixNum) : value).toPrecision(precision),
       );
       const dotLessShortValue = (shortValue + '').replace(/[^a-zA-Z 0-9]+/g, '');
       if (dotLessShortValue.length <= 2) {
@@ -187,7 +203,7 @@ export function timeGreeting(): string {
       const result = element[2].toString();
       greeting = result
         .split(' ')
-        .map(s => s.charAt(0).toUpperCase() + s.substring(1))
+        .map((s) => s.charAt(0).toUpperCase() + s.substring(1))
         .join(' ');
       break;
     }
@@ -205,7 +221,7 @@ export function fileUploadValidation(
   event: Event,
   fileSize: number,
   fileSizeType: 'kb' | 'mb',
-  fileTypes: string[]
+  fileTypes: string[],
 ): IValidationError | null {
   fileSize = fileSize || 1;
   let validationInfo: IValidationError;
@@ -262,7 +278,7 @@ export function getBase64(file: File): Promise<string> {
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = () => resolve(reader.result as string);
-    reader.onerror = error => reject(error);
+    reader.onerror = (error) => reject(error);
   });
 }
 
@@ -335,7 +351,7 @@ export function getOffset(el: HTMLElement) {
  */
 export function removeProperties(obj: any, propsToRemove: string[]) {
   if (Array.isArray(obj)) {
-    obj.forEach(item => removeProperties(item, propsToRemove));
+    obj.forEach((item) => removeProperties(item, propsToRemove));
   } else if (typeof obj === 'object' && obj !== null) {
     for (const key in obj) {
       if (propsToRemove.includes(key)) {
@@ -411,8 +427,8 @@ export function customFilterPredicate() {
             filterWithMatchMode(
               data[key as keyof typeof data].toString(),
               element.filter.value.toString(),
-              element.filter.matchMode ?? 'contains'
-            )
+              element.filter.matchMode ?? 'contains',
+            ),
           );
         }
       }
@@ -434,7 +450,7 @@ export function customFilterPredicate() {
         }
       }
     }
-    return isIndividualFilterMatchFound.every(found => found) && isGlobalFilterMatchFound;
+    return isIndividualFilterMatchFound.every((found) => found) && isGlobalFilterMatchFound;
   };
   return customFilterFn;
 }
